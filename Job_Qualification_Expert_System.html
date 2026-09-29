@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Check qualifications for four technology positions with clear explanations of every requirement.">
+  <title>Job Qualification Expert System</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23145a47'/%3E%3Cpath d='M17 34l10 10 21-24' fill='none' stroke='%23c7efdd' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <style>
+    :root {font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color:#263630; background:#fff; font-size:16px}
+    * {box-sizing:border-box} body {margin:0;background:#fff} button, input, select {font:inherit}
+    .top {background:#145a47;color:white;padding:1.15rem max(1.25rem,calc((100vw - 1100px)/2))}
+    .top strong {font-size:1.3rem;letter-spacing:-.03em}.top span {display:block;color:#d3efe2;font-size:.92rem;margin-top:.15rem}
+    main {max-width:1100px;margin:0 auto;padding:2.1rem 1.25rem 4rem}
+    h1 {font-size:clamp(1.65rem,3vw,2.35rem);letter-spacing:-.035em;margin:0 0 .4rem} h2 {font-size:1.13rem;margin:0 0 1.1rem;letter-spacing:-.01em}
+    p {line-height:1.5}.intro {color:#586b61;margin:.1rem 0 1.8rem}
+    .layout {display:grid;grid-template-columns:minmax(0,1.28fr) minmax(310px,.85fr);gap:1.35rem;align-items:start}
+    .card {background:white;border:1px solid #dce8df;border-radius:16px;padding:1.35rem 1.5rem;box-shadow:0 10px 28px rgba(26,75,53,.055);margin-bottom:1rem}
+    .eyebrow {font-size:.83rem;font-weight:800;letter-spacing:.09em;color:#586b61;text-transform:uppercase;margin:0 0 1.05rem}
+    .field {margin-bottom:1rem}.field:last-child {margin-bottom:0}.field label {font-weight:650;display:block;margin-bottom:.4rem}
+    select,input[type=number] {width:100%;border:1px solid #b7cbbd;border-radius:9px;background:white;color:#263630;padding:.67rem .75rem;min-height:44px}
+    select:focus-visible,input:focus-visible,button:focus-visible {outline:3px solid #89c6a6;outline-offset:2px}
+    .check {display:flex;align-items:flex-start;gap:.65rem;line-height:1.4;margin:.75rem 0;cursor:pointer}.check input {width:19px;height:19px;accent-color:#147354;flex:none;margin-top:2px}
+    .years {display:grid;grid-template-columns:1fr 112px;align-items:center;gap:.7rem;margin:.72rem 0}.years label {line-height:1.3}
+    .hint {color:#586b61;font-size:.9rem;margin:-.25rem 0 1rem}
+    .actions {display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.15rem}
+    button {border-radius:9px;padding:.75rem 1.2rem;cursor:pointer;font-weight:700;border:1px solid #c8d9cc}
+    .primary {background:#147354;color:white;border-color:#147354}.primary:hover {background:#0f5b42}.secondary {background:white;color:#263630}.secondary:hover {background:#f0f8f2}
+    #results {position:sticky;top:1.2rem}.empty {border:1px dashed #bfd5c6;background:#f3faf5;border-radius:12px;padding:1.25rem;color:#586b61;line-height:1.5}
+    .count {font-weight:700;color:#586b61;margin:-.25rem 0 1rem}.group-title {font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:#586b61;font-weight:800;margin:1.4rem 0 .6rem}
+    .result {border:1px solid #dce8df;border-left:4px solid #147354;border-radius:10px;padding:.85rem 1rem;margin:.7rem 0;background:#fff}
+    .result.no {border-left-color:#b6554c}.result h3 {font-size:1rem;margin:0 0 .35rem}.result p {margin:.3rem 0;color:#586b61;font-size:.92rem}
+    .result ul {padding-left:1.25rem;margin:.45rem 0;color:#586b61;font-size:.92rem;line-height:1.5}.result li {margin:.25rem 0}
+    .note {font-size:.87rem;color:#586b61;line-height:1.5;margin-top:.8rem}
+    @media(max-width:790px) {.layout {display:block} #results {position:static}.top {padding:1rem 1.25rem}main {padding-top:1.5rem}}
+    @media(max-width:420px) {.card {padding:1.1rem}.years {grid-template-columns:1fr 90px}}
+  </style>
+</head>
+<body>
+  <header class="top"><strong>Job Qualification Expert System</strong><span>Explore which positions fit your qualifications</span></header>
+  <main>
+    <h1>Find positions you qualify for</h1>
+    <p class="intro">Answer the questions below. Each position is checked separately, with reasons for any requirements you do not meet.</p>
+    <div class="layout">
+      <form id="form">
+        <section class="card" aria-labelledby="edu-title">
+          <h2 id="edu-title">Education & certification</h2>
+          <div class="field"><label for="degree">Computer Science degree</label>
+            <select id="degree" required>
+              <option value="" selected disabled>Select a degree</option>
+              <option value="none">No CS degree</option><option value="bachelor">Bachelor's in CS</option>
+              <option value="master">Master's in CS</option><option value="both">Bachelor's and Master's in CS</option>
+            </select></div>
+          <label class="check"><input type="checkbox" id="certification">PMI Lean Project Management Certification</label>
+        </section>
+        <section class="card" aria-labelledby="skills-title">
+          <h2 id="skills-title">Coursework & tools</h2>
+          <label class="check"><input type="checkbox" id="pythonCourse">Python coursework</label>
+          <label class="check"><input type="checkbox" id="softwareCourse">Software Engineering coursework</label>
+          <label class="check"><input type="checkbox" id="agileCourse">Agile course <small>(desired)</small></label>
+          <label class="check"><input type="checkbox" id="git">Used Git <small>(desired)</small></label>
+          <label class="check"><input type="checkbox" id="agileExperience">Worked on an Agile project</label>
+        </section>
+        <section class="card" aria-labelledby="exp-title">
+          <h2 id="exp-title">Experience</h2><p class="hint">Enter years, including decimals if needed. Use 0 for no experience.</p>
+          <div class="years"><label for="pythonYears">Python development</label><input id="pythonYears" type="number" min="0" max="80" step="any" value="0" required></div>
+          <div class="years"><label for="dataYears">Data development</label><input id="dataYears" type="number" min="0" max="80" step="any" value="0" required></div>
+          <div class="years"><label for="agileYears">Agile projects</label><input id="agileYears" type="number" min="0" max="80" step="any" value="0" required></div>
+          <div class="years"><label for="managerYears">Managing software projects</label><input id="managerYears" type="number" min="0" max="80" step="any" value="0" required></div>
+          <div class="years"><label for="expertYears">Developing Expert Systems</label><input id="expertYears" type="number" min="0" max="80" step="any" value="0" required></div>
+          <div class="years"><label for="architectureYears">Data architecture and data development together</label><input id="architectureYears" type="number" min="0" max="80" step="any" value="0" required></div>
+          <div class="actions"><button type="submit" class="primary">Evaluate qualifications</button><button type="reset" class="secondary">Clear form</button></div>
+        </section>
+      </form>
+      <aside id="results" class="card" aria-live="polite" aria-label="Qualification results">
+        <h2>Your results</h2><div class="empty">Complete the form and select <strong>Evaluate qualifications</strong> to see all four positions.</div>
+      </aside>
+    </div>
+  </main>
+  <script>
+    const $ = id => document.getElementById(id);
+    const check = id => $(id).checked;
+    const years = id => Number($(id).value);
+    function evaluate() {
+      const degree = $('degree').value;
+      const bachelor = degree === 'bachelor' || degree === 'both';
+      const master = degree === 'master' || degree === 'both';
+      const roles = [
+        {name:'Entry-Level Python Engineer', required:[
+          [check('pythonCourse'),'Python coursework'],
+          [check('softwareCourse'),'Software Engineering coursework'],
+          [bachelor,"Bachelor's degree in Computer Science"]],
+          desired:'Agile course: ' + (check('agileCourse') ? 'completed' : 'not reported')},
+        {name:'Python Engineer', required:[
+          [years('pythonYears') >= 3,'3 years of Python development'],
+          [years('dataYears') >= 1,'1 year of data development'],
+          [check('agileExperience'),'experience on Agile projects'],
+          [bachelor,"Bachelor's degree in Computer Science"]],
+          desired:'Git: ' + (check('git') ? 'used' : 'not reported')},
+        {name:'Project Manager', required:[
+          [years('managerYears') >= 3,'3 years managing software projects'],
+          [years('agileYears') >= 2,'2 years of experience on Agile projects'],
+          [check('certification'),'PMI Lean Project Management Certification']]},
+        {name:'Senior Knowledge Engineer', required:[
+          [years('pythonYears') >= 4,'4 years using Python to develop'],
+          [years('expertYears') >= 2,'2 years developing Expert Systems'],
+          [years('architectureYears') >= 2,'2 years of data architecture and data development'],
+          [master,"Master's degree in Computer Science"]]}
+      ];
+      return roles.map(role => ({...role, missing:role.required.filter(([met]) => !met).map(([,label]) => label)}));
+    }
+    function renderResult(role) {
+      const card = document.createElement('section');
+      card.className = 'result' + (role.missing.length ? ' no' : '');
+      const name = document.createElement('h3'); name.textContent = role.name; card.append(name);
+      const line = document.createElement('p');
+      line.textContent = role.missing.length ? 'Missing required conditions:' : 'All required conditions met.';
+      card.append(line);
+      if (role.missing.length) {
+        const list = document.createElement('ul');
+        role.missing.forEach(label => {const item = document.createElement('li'); item.textContent = label; list.append(item)});
+        card.append(list);
+      }
+      if (role.desired) {
+        const note = document.createElement('p'); note.textContent = 'Desired skill (does not affect qualification): ' + role.desired;
+        card.append(note);
+      }
+      return card;
+    }
+    $('form').addEventListener('submit', event => {
+      event.preventDefault();
+      if (!$('form').reportValidity()) return;
+      const roles = evaluate(); const yes = roles.filter(r => !r.missing.length); const no = roles.filter(r => r.missing.length);
+      const panel = $('results'); panel.replaceChildren();
+      const title = document.createElement('h2'); title.textContent = 'Your results'; panel.append(title);
+      const count = document.createElement('p'); count.className = 'count'; count.textContent = `Qualified for ${yes.length} of ${roles.length} positions.`; panel.append(count);
+      for (const [heading, list] of [['Qualified positions', yes], ['Not qualified yet', no]]) {
+        const h = document.createElement('h3'); h.className = 'group-title'; h.textContent = heading; panel.append(h);
+        if (!list.length) {const p = document.createElement('p'); p.className = 'note'; p.textContent = 'None in this section.'; panel.append(p)}
+        list.forEach(role => panel.append(renderResult(role)));
+      }
+      const note = document.createElement('p'); note.className = 'note'; note.textContent = 'Desired skills do not change qualification. Answers are evaluated in this browser and are not saved.'; panel.append(note);
+      if (matchMedia('(max-width: 790px)').matches) panel.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+    $('form').addEventListener('reset', () => {
+      const panel = $('results'); panel.replaceChildren();
+      const heading = document.createElement('h2'); heading.textContent = 'Your results';
+      const placeholder = document.createElement('div'); placeholder.className = 'empty';
+      placeholder.textContent = 'Complete the form and select Evaluate qualifications to see all four positions.';
+      panel.append(heading, placeholder);
+    });
+  </script>
+</body>
+</html>
